@@ -9,7 +9,6 @@ import (
 )
 
 const PolygonPath = "https://api.polygon.io"
-const ApiKey = "apiKey=KpXGkgim6HyuF5IWvp0d2dy7s8EpUWuu"
 
 type Stock struct {
 	Ticker string `json:"ticker"`
@@ -21,13 +20,17 @@ type Values struct {
 	Open float64 `json:"open"`
 }
 
-func SearchTicker(ticker string) []Stock {
+func SearchTicker(ticker string, ApiKey string) []Stock {
 	resp, err := http.Get(PolygonPath + "/v3/reference/tickers?" +
 		ApiKey + "&ticker=" + strings.ToUpper(ticker))
 	if err != nil {
 		log.Fatal(err)
 	}
 	body, err := io.ReadAll(resp.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	data := struct {
 		Results []Stock `json:"results"`
@@ -37,12 +40,16 @@ func SearchTicker(ticker string) []Stock {
 	return data.Results
 }
 
-func GetDailyValues(ticker string) Values {
+func GetDailyValues(ticker string, ApiKey string) Values {
 	resp, err := http.Get(PolygonPath + "/v1/open-close/" + strings.ToUpper(ticker) + "/2023-10-10/?" + ApiKey)
 	if err != nil {
 		log.Fatal(err)
 	}
 	body, err := io.ReadAll(resp.Body)
+
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	data := Values{}
 	json.Unmarshal(body, &data)
