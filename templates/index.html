@@ -11,7 +11,7 @@
 <main>
   <header>
     <ul id="stock-list">
-      {{ range .Stocks }}
+      {{ range . }}
       {{ block "stock-element" .}}
       <li>
         <h5><strong>${{ .Price }}</strong> {{ .Ticker }}</h5>
