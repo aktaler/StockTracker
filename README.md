@@ -8,9 +8,11 @@ This application was created with the purpose of teaching myself how to use Go a
 ## Functionality
 The application allows users to:
 
-* Sign up for an account and create a portfolio of stocks
 * View the current value of their stocks in real-time using htmx
 * Edit their portfolio by adding or removing stocks
 * View a list of all the stocks in their portfolio at any time
 
 This project is a great way for me to learn about Go and htmx, and I hope it can be a useful resource for others who are looking to learn these technologies as well.
+
+## Future Functionalitys
+* Sign up for an account and create a portfolio of stocks
